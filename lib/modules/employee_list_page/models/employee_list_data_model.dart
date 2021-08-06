@@ -33,8 +33,8 @@ class EmployeeListDataModel {
   int? get companyId => _companyId;
   Company? get company => _company;
 
-  set setAddressId(int val) => _addressId = val;
-  set setCompanyId(int val) => _companyId = val;
+  set addressId(int? val) => _addressId = val;
+  set companyId(int? val) => _companyId = val;
 
   EmployeeListDataModel(
       {int? id,
@@ -43,8 +43,10 @@ class EmployeeListDataModel {
       String? email,
       String? profileImage,
       Address? address,
-      dynamic? phone,
+      String? phone,
       String? website,
+      int? addressId,
+      int? companyId,
       Company? company}) {
     _id = id;
     _name = name;
@@ -54,6 +56,8 @@ class EmployeeListDataModel {
     _address = address;
     _phone = phone;
     _website = website;
+    _addressId = addressId;
+    _companyId = companyId;
     _company = company;
   }
 
@@ -67,6 +71,8 @@ class EmployeeListDataModel {
         json['address'] != null ? Address.fromJson(json['address']) : null;
     _phone = json['phone'];
     _website = json['website'];
+    _companyId = json['companyId'];
+    _addressId = json['addressId'];
     _company =
         json['company'] != null ? Company.fromJson(json['company']) : null;
   }
@@ -83,6 +89,8 @@ class EmployeeListDataModel {
     }
     map['phone'] = _phone;
     map['website'] = _website;
+    map['companyId'] = _companyId;
+    map['addressId'] = _addressId;
     if (_company != null) {
       map['company'] = _company?.toJson();
     }
@@ -131,32 +139,34 @@ class Company {
 /// geo : {"lat":"-37.3159","lng":"81.1496"}
 
 class Address {
-  dynamic _street;
+  String? _street;
   String? _suite;
   String? _city;
   String? _zipcode;
   int? _geoId;
   Geo? _geo;
 
-  dynamic get street => _street;
+  String? get street => _street;
   String? get suite => _suite;
   String? get city => _city;
   String? get zipcode => _zipcode;
   int? get geoId => _geoId;
   Geo? get geo => _geo;
 
-  set setGeoId(int val) => _geoId = val;
+  set geoId(int? val) => _geoId = val;
 
   Address(
-      {dynamic street,
+      {String? street,
       String? suite,
       String? city,
       String? zipcode,
+      int? geoId,
       Geo? geo}) {
     _street = street;
     _suite = suite;
     _city = city;
     _zipcode = zipcode;
+    _geoId = geoId;
     _geo = geo;
   }
 
@@ -165,6 +175,7 @@ class Address {
     _suite = json['suite'];
     _city = json['city'];
     _zipcode = json['zipcode'];
+    _geoId = json['geoId'];
     _geo = json['geo'] != null ? Geo.fromJson(json['geo']) : null;
   }
 
@@ -174,6 +185,7 @@ class Address {
     map['suite'] = _suite;
     map['city'] = _city;
     map['zipcode'] = _zipcode;
+    map['geoId'] = _geoId;
     if (_geo != null) {
       map['geo'] = _geo?.toJson();
     }

@@ -1,8 +1,13 @@
-import 'package:employ_list/core/constants/utils/enums/api_call_status_enum.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:employ_list/core/routes/routes.dart';
+import 'package:employ_list/core/utils/enums/api_call_status_enum.dart';
+import 'package:employ_list/modules/employee_list_page/UI/widgets/employee_listview.dart';
 import 'package:employ_list/modules/employee_list_page/controller/employee_list_page_controller.dart';
 import 'package:employ_list/modules/employee_list_page/models/employee_list_data_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'widgets/search_textfield.dart';
 
 class EmployeeListPage extends StatelessWidget {
   const EmployeeListPage({Key? key}) : super(key: key);
@@ -27,31 +32,30 @@ class EmployeeListPage extends StatelessWidget {
               child: Text("Something went wrong!"),
             );
           default:
-            return controller.employeeList.length != 0
-                ? ListView.builder(
-                    // the list of favorite locations
-                    itemCount: controller.employeeList.length,
-                    itemBuilder: (context, index) => Card(
-                      elevation: 10,
-                      child: ListTile(
-                        title: Text(
-                          (controller.employeeList[index]
-                                  as EmployeeListDataModel)
-                              .name!,
-                          style: TextStyle(fontWeight: FontWeight.bold),
+            return Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                children: [
+                  // search container is shown when there is
+                  // data or a search has performed.
+                  if (controller.employeeList.length != 0 ||
+                      controller.isSearch.value == true)
+                    SearchTextField(),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  // list view only shown when the array is not empty
+                  controller.employeeList.length != 0
+                      ? EmployeeListView()
+                      : Center(
+                          child: Text(
+                            "No employee list available",
+                            key: Key("NoFavouritePlaceText"),
+                          ),
                         ),
-                        subtitle: Text((controller.employeeList[index]
-                                as EmployeeListDataModel)
-                            .email!),
-                      ),
-                    ),
-                  )
-                : Center(
-                    child: Text(
-                      "No favorite places added!",
-                      key: Key("NoFavouritePlaceText"),
-                    ),
-                  );
+                ],
+              ),
+            );
         }
       }),
     );

@@ -41,8 +41,11 @@ dependencies:
   # link:- https://pub.dev/packages/internet_connection_checker
   internet_connection_checker: ^0.0.1+2
   # for local storage
-  #link :- https://pub.dev/packages/sqflite
+  # link :- https://pub.dev/packages/sqflite
   sqflite: ^2.0.0+3
+  # for image cache
+  # link :- https://pub.dev/packages/cached_network_image
+  cached_network_image: ^3.1.0
 
 dev_dependencies:
   flutter_test:
@@ -60,9 +63,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
