@@ -4,6 +4,7 @@ An application to fetch employee list from api and save in local database
 
 ## Task given
 
+It took me 2 day's to complete this task.
 1. Fetch the employee’s JSON data from the following URL
 https://run.mocky.io/v3/3440c30c-8872-4d73-bef5-1a5d33e2ad87
 2. Store the data in the database. Once the data is stored, it should always use the data from the database without calling the webservice.
